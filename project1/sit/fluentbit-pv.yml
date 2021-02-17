@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: project1-fluentbit-pv
+  labels: 
+    pv: project1-fluentbit-pv
+    company.com/appname: project1-storage
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: standard
+  nfs:
+    path: /sit-project1-fluentbit/
+    server: 10.10.10.10

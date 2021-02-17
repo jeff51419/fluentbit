@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: fluent-bit-logging
+  name: fluent-bit
+  namespace: cattle-prometheus
+spec:
+  endpoints:
+    - interval: 10s
+      path: /api/v1/metrics/prometheus
+      port: http
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - logging
+  selector:
+    matchLabels:
+      k8s-app: fluent-bit-logging
